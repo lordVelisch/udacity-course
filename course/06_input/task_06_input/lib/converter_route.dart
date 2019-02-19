@@ -29,7 +29,8 @@ class ConverterRoute extends StatefulWidget {
     @required this.name,
     @required this.color,
     @required this.units,
-  })  : assert(name != null),
+  })
+      : assert(name != null),
         assert(color != null),
         assert(units != null);
 
@@ -40,6 +41,11 @@ class ConverterRoute extends StatefulWidget {
 class _ConverterRouteState extends State<ConverterRoute> {
   // TODO: Set some variables, such as for keeping track of the user's input
   // value and units
+  String inputValue;
+  final List<String> _inputUnits = [
+    'Unit 1', 'Unit 2', 'Unit 3', 'Unit 4', 'Unit 5', 'Unit 6'];
+  String outputValue;
+  String outputUnit;
 
   // TODO: Determine whether you need to override anything, such as initState()
 
@@ -65,6 +71,23 @@ class _ConverterRouteState extends State<ConverterRoute> {
   Widget build(BuildContext context) {
     // TODO: Create the 'input' group of widgets. This is a Column that
     // includes the input value, and 'from' unit [Dropdown].
+    Column input = Column(
+      children: <Widget>[
+        Container(
+            child: TextField(
+
+            )
+        ),
+        Container(
+          child: DropdownButton(items: _inputUnits.map((String value) {
+            return new DropdownMenuItem(
+              value: value,
+              child: Text(value),
+            );
+          }).toList(), onChanged: null),
+        )
+      ],
+    );
 
     // TODO: Create a compare arrows icon.
 
@@ -74,28 +97,25 @@ class _ConverterRouteState extends State<ConverterRoute> {
     // TODO: Return the input, arrows, and output widgets, wrapped in a Column.
 
     // TODO: Delete the below placeholder code.
-    final unitWidgets = widget.units.map((Unit unit) {
-      return Container(
-        color: widget.color,
-        margin: EdgeInsets.all(8.0),
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          children: <Widget>[
-            Text(
-              unit.name,
-              style: Theme.of(context).textTheme.headline,
-            ),
-            Text(
-              'Conversion: ${unit.conversion}',
-              style: Theme.of(context).textTheme.subhead,
-            ),
-          ],
-        ),
-      );
-    }).toList();
 
-    return ListView(
-      children: unitWidgets,
+    return Scaffold(
+
+      body: Column(
+        children: <Widget>[
+          Container(
+              child: TextField(
+              )
+          ),
+          Container(
+            child: DropdownButton(items: _inputUnits.map((String value) {
+              return new DropdownMenuItem(
+                value: value,
+                child: Text(value),
+              );
+            }).toList(), onChanged: null),
+          )
+        ],
+      ),
     );
   }
 }
